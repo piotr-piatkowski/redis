@@ -169,8 +169,8 @@ start_server {
         if {$::valgrind} {after 100}
         assert_equal 2 [r lpush blist foo bar]
         if {$::valgrind} {after 100}
-        assert_equal {blist foo} [$rd read]
-        assert_equal bar [lindex [r lrange blist 0 -1] 0]
+        assert_equal {blist bar} [$rd read]
+        assert_equal foo [lindex [r lrange blist 0 -1] 0]
     }
 
     test "BRPOPLPUSH with zero timeout should block indefinitely" {
