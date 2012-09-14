@@ -812,7 +812,7 @@ int processMultibulkBuffer(redisClient *c) {
     }
 
     redisAssert(c->multibulklen > 0);
-    while(c->multibulklen) {
+    while(c->multibulklen && sdslen(c->querybuf)-pos > 2) {
         /* Read bulk length if unknown */
         if (c->bulklen == -1) {
             newline = strchr(c->querybuf+pos,'\r');
